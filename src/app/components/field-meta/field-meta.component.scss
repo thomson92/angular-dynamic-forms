@@ -1,0 +1,33 @@
+// .table-row {
+//     display: grid;
+//     width: 100%;
+//     grid-template-columns: 15% 15% 60% 10%;
+
+//     .base-cell {
+//         padding: 5px;
+//         text-align: left;
+//         vertical-align: middle;
+
+
+//     }
+//     // .id-container {
+//     //     // display: block;
+//     //     // overflow: auto;
+//     //     // white-space: nowrap;
+//     //     // max-width: 50%;
+//     // }
+// }
+
+@import "../../../assets/styles/table";
+
+.form-model__table__cell--field {
+    display: grid;
+    max-width: 300px;
+    padding-bottom: 1rem;
+}
+
+.base-cell__buttons {
+    @extend .form-model__table__cell;
+    display: block;
+    margin: auto;
+}

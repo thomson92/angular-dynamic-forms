@@ -1,0 +1,27 @@
+<tr class="form-model__table__row">
+
+  <td class="form-model__table__cell">{{fieldIndex}}</td>
+
+  <td class="form-model__table__cell id-container">{{id}}</td>
+
+  <td class="form-model__table__cell">
+    <article>
+
+      <div class="form-model__table__cell--field">
+        <label for="field-types">Field type</label>
+        <select id="field-types" name="field-types" type="text" [(ngModel)]="fieldMeta.fieldType">
+          <option *ngFor="let field of fieldTypes | keyvalue" [value]="field['key']">{{field['key']}}</option>
+        </select>
+      </div>
+
+      <div class="form-model__table__cell--field">
+        <label for="field-types">Label text</label>
+        <input type="text" [(ngModel)]="fieldMeta.labeltext">
+      </div>
+
+    </article>
+  </td>
+  <td class="base-cell__buttons">
+    <button *ngIf="!isConfirmed" (click)="add()">Add</button>
+  </td>
+</tr>

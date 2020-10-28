@@ -1,0 +1,11 @@
+<table class="form-model__table">
+  <tr class="form-model__table__row">
+    <th class="form-model__table__header">Index</th>
+    <th class="form-model__table__header">Id</th>
+    <th class="form-model__table__header">Field data</th>
+    <th class="form-model__table__header">Action</th>
+  </tr>
+  <app-field-meta *ngFor="let metaField of metaFields; let i = index" [fieldIndex]="i" [fieldMeta]="metaField"
+    (newFieldAdded)=(onFieldTemplateConfirmed($event))>
+  </app-field-meta>
+</table>

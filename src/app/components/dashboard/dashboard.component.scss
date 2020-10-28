@@ -2,8 +2,10 @@
     padding: 1rem;
     display: grid;
     grid-template-areas: 'model view';
+    grid-template-columns: repeat(2, 50%);
     max-width: 1200px;
     margin: auto;
+    
 
     &__element {
         padding: 0 1rem;
