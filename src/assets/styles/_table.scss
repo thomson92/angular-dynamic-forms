@@ -6,7 +6,8 @@
     &__row {
         display: grid;
         width: 100%;
-        grid-template-columns: 15% 15% 60% 10%;
+        box-sizing: border-box;
+        grid-template-columns: 15% 60% 10%;
     }
 
     &__header, &__cell {

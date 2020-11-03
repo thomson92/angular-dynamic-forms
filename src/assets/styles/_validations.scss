@@ -1,0 +1,13 @@
+@import "variables";
+
+.error__bg {
+  background-color: $caution-color;
+}
+
+.confirmed__bg {
+  background-color: $confirmed-color;
+}
+
+.error__bg--transparent {
+  background-color: rgba($color: $caution-color, $alpha: 0.6);
+}

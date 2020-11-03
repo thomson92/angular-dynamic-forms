@@ -1,0 +1,37 @@
+@import "variables";
+
+.row {
+    display: flex;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+}
+
+.row--centered-items {
+    @extend .row;
+    align-items: center;
+}
+
+.col--start-items {
+    @extend .col;
+    align-items: flex-start;
+}
+
+.stretched-el {
+    flex: 1 1 auto;
+}
+
+.centered-text {
+    text-align: center;
+    margin: auto;
+}
+
+.centered-horizontal {
+    margin: 0 auto;
+}
+
+.offset-left-mini {
+    padding: $space-mini;
+}
