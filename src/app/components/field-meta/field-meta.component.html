@@ -1,27 +1,52 @@
-<tr class="form-model__table__row">
+<details class="form-model__container" [ngClass]="fieldMeta.isConfigured ? 'confirmed' : 'unconfirmed'" open>
 
-  <td class="form-model__table__cell">{{fieldIndex}}</td>
+  <summary class="bottom-margin--medium" (mouseenter)="isHovered = true" (mouseleave)="isHovered = false">
 
-  <td class="form-model__table__cell id-container">{{id}}</td>
+    <p class="text-basic--color" *ngIf="fieldMeta.isConfigured else noFieldSelected">
+      {{fieldMeta.fieldType}}
+      <span *ngIf="fieldMeta.isLocked">(root)</span>
+      <small> : {{fieldMeta.id}}</small>
+    </p>
 
-  <td class="form-model__table__cell">
-    <article>
+    <button class="btn--caution btn--base" *ngIf="!fieldMeta.isLocked" (click)="removeField()"
+      [ngStyle]="{'visibility': isHovered ? 'visible' : 'hidden' }">x</button>
+  </summary>
 
-      <div class="form-model__table__cell--field">
-        <label for="field-types">Field type</label>
-        <select id="field-types" name="field-types" type="text" [(ngModel)]="fieldMeta.fieldType">
-          <option *ngFor="let field of fieldTypes | keyvalue" [value]="field['key']">{{field['key']}}</option>
-        </select>
-      </div>
+  <article class="left-offset--small">
 
-      <div class="form-model__table__cell--field">
-        <label for="field-types">Label text</label>
-        <input type="text" [(ngModel)]="fieldMeta.labeltext">
-      </div>
+    <div class="form-model--field">
+      <label for="field-types" class="inline-label">Field type*</label>
+      <select class="base-input" id="field-types" name="field-types" type="text" [ngModel]="fieldMeta.fieldType"
+        (ngModelChange)="update($event)" [disabled]="fieldMeta.isLocked">
+        <option *ngFor="let field of fieldTypes | keyvalue" [value]="field['key']">{{field['key']}}</option>
+      </select>
+    </div>
 
-    </article>
-  </td>
-  <td class="base-cell__buttons">
-    <button *ngIf="!isConfirmed" (click)="add()">Add</button>
-  </td>
-</tr>
+    <div class="form-model--field">
+      <label for="field-types" class="inline-label">Label text</label>
+      <input class="base-input" type="text" [(ngModel)]="fieldMeta.labeltext">
+    </div>
+
+    <details class="form-model__container">
+      <summary class="inline-label bottom-margin--medium"><b class="text-basic--color">Dependencies</b></summary>
+      <app-dependency *ngFor="let dependency of fieldMeta.dependencies" [dependencyData]="dependency"
+        [id]="fieldMeta" (dependencyFieldSelected)="onDependencySelect($event)"
+        (dependencyRemoved)="dependencyRemove($event)"></app-dependency>
+      <button class="btn--primary" (click)="addDependencyRow()">Add dependency</button>
+    </details>
+
+  </article>
+
+  <ng-container *ngIf="fieldMeta.fieldType == 'group'">
+    <app-field-meta *ngFor="let metaField of fieldMeta.nestedField; let i = index" [fieldMeta]="metaField"
+      (modelChanged)="onNestedFieldUpdate()" (fieldRemoved)="onFieldRemoveAction($event)">
+    </app-field-meta>
+  </ng-container>
+
+  <button class="btn--primary" *ngIf="canFieldOwnAddAction()" (click)="addField()"
+    [disabled]="!canFieldModelBeAdded()">Add field</button>
+</details>
+
+<ng-template #noFieldSelected>
+  <small>Not configured</small>
+</ng-template>

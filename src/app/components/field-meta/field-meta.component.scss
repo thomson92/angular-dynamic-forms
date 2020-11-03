@@ -1,33 +1,37 @@
-// .table-row {
-//     display: grid;
-//     width: 100%;
-//     grid-template-columns: 15% 15% 60% 10%;
-
-//     .base-cell {
-//         padding: 5px;
-//         text-align: left;
-//         vertical-align: middle;
-
-
-//     }
-//     // .id-container {
-//     //     // display: block;
-//     //     // overflow: auto;
-//     //     // white-space: nowrap;
-//     //     // max-width: 50%;
-//     // }
-// }
-
 @import "../../../assets/styles/table";
+@import "../../../assets/styles/inputs";
+@import "../../../assets/styles/variables";
+@import "../../../assets/styles/button";
+@import "../../../assets/styles/spaces";
 
-.form-model__table__cell--field {
+.form-model__container {
+    margin: 5px 0;
+    padding: $space-mini;
+    
+    summary {
+        display: flex;
+        align-items: center;
+        height: 30px;
+        cursor: pointer;
+    }
+}
+
+.form-model--field {
     display: grid;
     max-width: 300px;
     padding-bottom: 1rem;
 }
 
 .base-cell__buttons {
-    @extend .form-model__table__cell;
+    @extend .form-model--field;
     display: block;
     margin: auto;
+}
+
+.confirmed {
+    border-left: 5px solid $confirmed-color;
+}
+
+.unconfirmed {
+    border-left: 5px solid $secondary-color;
 }
