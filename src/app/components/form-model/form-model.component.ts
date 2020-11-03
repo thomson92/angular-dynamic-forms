@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { BaseField } from '../BaseField';
+import { BaseField } from '../shared/field-model';
+import { FormModelProviderService } from '../../services/form-model-provider.service';
+import { FieldType } from 'src/app/constants/field-types';
 
 @Component({
   selector: 'app-form-model',
@@ -8,15 +10,19 @@ import { BaseField } from '../BaseField';
 })
 export class FormModelComponent implements OnInit {
 
-  public metaFields: BaseField[];
+  private static defaultRootText = 'Dynamic form demo';
+  public formModelRoot: BaseField;
+
+  constructor(private formModelProvider: FormModelProviderService) {}
 
   ngOnInit(): void {
-    this.metaFields = new Array<BaseField>();
-    this.metaFields.push(new BaseField());
+    this.formModelRoot = new BaseField(null, true);
+    this.formModelRoot.setFieldType(FieldType.group);
+    this.formModelRoot.labeltext = FormModelComponent.defaultRootText;
+    this.onModelUpdate();
   }
 
-  public onFieldTemplateConfirmed(event): void {
-    console.log('asd');
-    this.metaFields.push(new BaseField());
+  public onModelUpdate(): void {
+    this.formModelProvider.newModelEvent(this.formModelRoot);
   }
 }
