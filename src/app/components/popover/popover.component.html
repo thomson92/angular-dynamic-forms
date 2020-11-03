@@ -1,0 +1,6 @@
+<div (mouseenter)="show()" (mouseleave)="hide()">
+  <div [hidden]="!isVisible || !isEnabled" [ngClass]="{'popover__box--warning': type === 'warning', 'popover__box--info': type === 'info'}">
+    <p>{{textValue}}</p>
+  </div>
+  <ng-content></ng-content>
+</div>
