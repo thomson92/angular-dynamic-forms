@@ -1,0 +1,8 @@
+@import "../../../assets/styles/button";
+@import "../../../assets/styles/variables";
+
+.btn--submit {
+    @extend .btn--primary;
+    margin-left: auto;
+    margin-top: $space-mini;
+}
