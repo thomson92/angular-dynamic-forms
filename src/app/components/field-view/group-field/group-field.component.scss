@@ -1,0 +1,10 @@
+@import "../../../../assets/styles/inputs";
+@import "../../../../assets/styles/validations";
+@import "../../../../assets/styles/layout";
+@import "../../../../assets/styles/variables";
+
+:host {
+    position: relative;
+    display: block;
+    padding-left: $space-mini;
+}

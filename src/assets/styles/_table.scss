@@ -1,0 +1,17 @@
+@import "../styles/variables";
+
+.form-model__table {
+    display: block;
+
+    &__row {
+        display: grid;
+        width: 100%;
+        box-sizing: border-box;
+        grid-template-columns: 15% 60% 10%;
+    }
+
+    &__header, &__cell {
+        text-align: left;
+        padding: $space-mini;
+    }
+}

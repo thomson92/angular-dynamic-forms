@@ -1,0 +1,25 @@
+@import "variables";
+
+.inline-label {
+    @extend .text-basic--color, .text--medium;
+    padding: $space-mini;
+}
+
+.text--medium {
+    font-size: 12px;
+}
+
+.text-basic--color {
+    color: $text-color-base;
+}
+
+.base-input {
+    border: none;
+    border-bottom: 1px solid $secondary-color;
+    padding: $space-mini ;
+    background-color: white;
+}
+
+select {
+    cursor: pointer;
+}

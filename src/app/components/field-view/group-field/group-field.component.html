@@ -1,0 +1,7 @@
+<app-popover [isEnabled]="showError" [textValue]="'Invalid'" [type]="'warning'">
+  <div class="offset-left-mini" [formGroup]="fieldData.getFormControlRef()"
+    [ngClass]="{'error__bg--transparent': showError}">
+    <h4 class="text-basic--color">{{fieldData.labeltext}}</h4>
+    <ng-template *ngFor="let field of nestedFields" appViewRefProvider></ng-template>
+  </div>
+</app-popover>

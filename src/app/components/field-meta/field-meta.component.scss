@@ -1,0 +1,37 @@
+@import "../../../assets/styles/table";
+@import "../../../assets/styles/inputs";
+@import "../../../assets/styles/variables";
+@import "../../../assets/styles/button";
+@import "../../../assets/styles/spaces";
+
+.form-model__container {
+    margin: 5px 0;
+    padding: $space-mini;
+    
+    summary {
+        display: flex;
+        align-items: center;
+        height: 30px;
+        cursor: pointer;
+    }
+}
+
+.form-model--field {
+    display: grid;
+    max-width: 300px;
+    padding-bottom: 1rem;
+}
+
+.base-cell__buttons {
+    @extend .form-model--field;
+    display: block;
+    margin: auto;
+}
+
+.confirmed {
+    border-left: 5px solid $confirmed-color;
+}
+
+.unconfirmed {
+    border-left: 5px solid $secondary-color;
+}

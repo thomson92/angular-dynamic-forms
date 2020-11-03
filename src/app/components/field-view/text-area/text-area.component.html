@@ -1,0 +1,6 @@
+<app-popover [isEnabled]="showError" [textValue]="'Invalid'" [type]="'warning'">
+  <div class="col--start-items offset-left-mini" [ngClass]="{'error__bg--transparent': showError}">
+    <p class="inline-label">{{fieldData.labeltext}}</p>
+    <input type="text" [formControl]="fieldData.getFormControlRef()" (blur)="checkStatus()">
+  </div>
+</app-popover>

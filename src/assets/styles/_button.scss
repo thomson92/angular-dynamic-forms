@@ -1,0 +1,32 @@
+@import "variables";
+
+@mixin button-base($color) {
+    display: block;
+    color: white;
+    border: none;
+    cursor: pointer;
+    background-color: $color;
+  }
+  
+
+.btn--primary {
+  @include button-base($primary-color);
+  padding: $space-small $space-medium;
+
+  &:hover {
+    background-color: lighten($color: $primary-color, $amount: 5)
+  }
+}
+
+.btn--caution {
+  @include button-base($caution-color);
+  margin-left: auto;
+  height: 100%;
+  max-height: 30px;
+  width: 30px;
+  visibility: hidden;
+
+  &:hover {
+    background-color: lighten($color: $caution-color, $amount: 5)
+  }
+}

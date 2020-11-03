@@ -1,0 +1,52 @@
+<details class="form-model__container" [ngClass]="fieldMeta.isConfigured ? 'confirmed' : 'unconfirmed'" open>
+
+  <summary class="bottom-margin--medium" (mouseenter)="isHovered = true" (mouseleave)="isHovered = false">
+
+    <p class="text-basic--color" *ngIf="fieldMeta.isConfigured else noFieldSelected">
+      {{fieldMeta.fieldType}}
+      <span *ngIf="fieldMeta.isLocked">(root)</span>
+      <small> : {{fieldMeta.id}}</small>
+    </p>
+
+    <button class="btn--caution btn--base" *ngIf="!fieldMeta.isLocked" (click)="removeField()"
+      [ngStyle]="{'visibility': isHovered ? 'visible' : 'hidden' }">x</button>
+  </summary>
+
+  <article class="left-offset--small">
+
+    <div class="form-model--field">
+      <label for="field-types" class="inline-label">Field type*</label>
+      <select class="base-input" id="field-types" name="field-types" type="text" [ngModel]="fieldMeta.fieldType"
+        (ngModelChange)="update($event)" [disabled]="fieldMeta.isLocked">
+        <option *ngFor="let field of fieldTypes | keyvalue" [value]="field['key']">{{field['key']}}</option>
+      </select>
+    </div>
+
+    <div class="form-model--field">
+      <label for="field-types" class="inline-label">Label text</label>
+      <input class="base-input" type="text" [(ngModel)]="fieldMeta.labeltext">
+    </div>
+
+    <details class="form-model__container">
+      <summary class="inline-label bottom-margin--medium"><b class="text-basic--color">Dependencies</b></summary>
+      <app-dependency *ngFor="let dependency of fieldMeta.dependencies" [dependencyData]="dependency"
+        [id]="fieldMeta" (dependencyFieldSelected)="onDependencySelect($event)"
+        (dependencyRemoved)="dependencyRemove($event)"></app-dependency>
+      <button class="btn--primary" (click)="addDependencyRow()">Add dependency</button>
+    </details>
+
+  </article>
+
+  <ng-container *ngIf="fieldMeta.fieldType == 'group'">
+    <app-field-meta *ngFor="let metaField of fieldMeta.nestedField; let i = index" [fieldMeta]="metaField"
+      (modelChanged)="onNestedFieldUpdate()" (fieldRemoved)="onFieldRemoveAction($event)">
+    </app-field-meta>
+  </ng-container>
+
+  <button class="btn--primary" *ngIf="canFieldOwnAddAction()" (click)="addField()"
+    [disabled]="!canFieldModelBeAdded()">Add field</button>
+</details>
+
+<ng-template #noFieldSelected>
+  <small>Not configured</small>
+</ng-template>

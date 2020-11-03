@@ -1,0 +1,39 @@
+@import "../../../assets/styles/inputs";
+
+.wrapper {
+  padding: 1rem;
+  display: grid;
+  grid-template-areas: 'model view';
+  grid-template-columns: repeat(2, 50%);
+  max-width: 1200px;
+  margin: auto;
+
+
+  &__element {
+    padding: 0 1rem;
+  }
+
+  &__model {
+    @extend .wrapper__element;
+    grid-area: model;
+  }
+
+  &__view {
+    @extend .wrapper__element;
+    grid-area: view;
+  }
+}
+
+@media (min-width: 801px) {
+  .wrapper {
+    grid-template-areas: 'model view';
+  }
+}
+
+@media (max-width: 800px) {
+  .wrapper {
+    grid-template-areas:
+      'view view'
+      'model model';
+  }
+}
