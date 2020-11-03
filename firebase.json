@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/dynamic-forms-demo/",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
