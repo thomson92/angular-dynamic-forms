@@ -1,5 +1,5 @@
 export enum MetaDependencyStatus {
     duplicate = 'duplicate',
-    valid = 'ok',
+    valid = 'applied',
     unset = 'unset',
 }
