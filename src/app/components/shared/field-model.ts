@@ -25,7 +25,7 @@ export class BaseField {
   public readonly isLocked: boolean;
   public readonly id: number;
 
-  private control: AbstractControl;
+  private controlRef: AbstractControl;
 
 
   public constructor(parentPath: number[], isRoot = false) {
@@ -44,6 +44,12 @@ export class BaseField {
     this.isLocked = isRoot;
   }
 
+  public isMyDescendant(fiedToCheckPath: number[]): boolean {
+    // Descendants path is collection of ancestors id's.
+    const isDescendants = fiedToCheckPath.includes(this.id);
+
+    return isDescendants;
+  }
 
   public static getFieldComponentType(fieldType: FieldType): Type<IBaseFieldComponent> {
     let fieldComponentType: Type<IBaseFieldComponent> = null;
@@ -65,11 +71,11 @@ export class BaseField {
   }
 
   public getFormControlRef(): AbstractControl {
-    return this.control;
+    return this.controlRef;
   }
 
   public setFormControl(control: AbstractControl): void {
-    this.control = control;
+    this.controlRef = control;
   }
 
   public setFieldType(fieldType: FieldType): void {

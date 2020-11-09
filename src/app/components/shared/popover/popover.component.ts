@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { MessageType } from '../../constants/message-types';
+import { MessageType } from 'src/app/constants/message-types';
 
 @Component({
   selector: 'app-popover',

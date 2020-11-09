@@ -1,12 +1,16 @@
 <details class="form-model__container" [ngClass]="fieldMeta.isConfigured ? 'confirmed' : 'unconfirmed'" open>
 
-  <summary class="bottom-margin--medium" (mouseenter)="isHovered = true" (mouseleave)="isHovered = false">
+  <summary class="bottom-margin--medium pd-sm" (mouseenter)="isHovered = true" (mouseleave)="isHovered = false">
 
-    <p class="text-basic--color" *ngIf="fieldMeta.isConfigured else noFieldSelected">
-      {{fieldMeta.fieldType}}
-      <span *ngIf="fieldMeta.isLocked">(root)</span>
-      <small> : {{fieldMeta.id}}</small>
-    </p>
+    <div>
+      <p class="text-basic--color text--mg-a" *ngIf="fieldMeta.isConfigured else noFieldSelected">
+        {{fieldMeta.fieldType}}
+        <span *ngIf="fieldMeta.isLocked">(root)</span>
+      </p>
+      <div>
+        <small>id : {{fieldMeta.id}}</small>
+      </div>
+    </div>
 
     <button class="btn--caution btn--base" *ngIf="!fieldMeta.isLocked" (click)="removeField()"
       [ngStyle]="{'visibility': isHovered ? 'visible' : 'hidden' }">x</button>
@@ -29,9 +33,9 @@
 
     <details class="form-model__container">
       <summary class="inline-label bottom-margin--medium"><b class="text-basic--color">Dependencies</b></summary>
-      <app-dependency *ngFor="let dependency of fieldMeta.dependencies" [dependencyData]="dependency"
-        [id]="fieldMeta" (dependencyFieldSelected)="onDependencySelect($event)"
-        (dependencyRemoved)="dependencyRemove($event)"></app-dependency>
+      <app-dependency *ngFor="let dependency of fieldMeta.dependencies" [dependencyData]="dependency" [id]="fieldMeta"
+        (dependencyFieldSelected)="onDependencySelect($event)" (dependencyRemoved)="dependencyRemove($event)">
+      </app-dependency>
       <button class="btn--primary" (click)="addDependencyRow()">Add dependency</button>
     </details>
 

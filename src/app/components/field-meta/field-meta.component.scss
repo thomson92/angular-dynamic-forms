@@ -1,8 +1,4 @@
-@import "../../../assets/styles/table";
-@import "../../../assets/styles/inputs";
-@import "../../../assets/styles/variables";
-@import "../../../assets/styles/button";
-@import "../../../assets/styles/spaces";
+@import "../../../assets/styles/main";
 
 .form-model__container {
     margin: 5px 0;
@@ -13,6 +9,12 @@
         align-items: center;
         height: 30px;
         cursor: pointer;
+        border: 1px solid transparent;
+
+        &:focus {
+            outline: none;
+            border-color: $secondary-color;
+        }
     }
 }
 

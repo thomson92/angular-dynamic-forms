@@ -1,5 +1,5 @@
-<app-popover [isEnabled]="showError" [textValue]="'Invalid'" [type]="'warning'">
-    <div class="row--centered-items" [ngClass]="{'error__bg--transparent': showError}">
+<app-popover [isEnabled]="showError" [textValue]="'Required'" [type]="'warning'">
+    <div class="row--centered-items checkbox__field" [ngClass]="{'error__bg--transparent': showError}">
         <input type="checkbox" [formControl]="fieldData.getFormControlRef()">
         <p class="inline-label">{{fieldData.labeltext}}</p>
     </div>

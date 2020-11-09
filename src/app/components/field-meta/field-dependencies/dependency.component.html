@@ -12,8 +12,8 @@
   <td class="col">
     <select class="base-input field__select centered-horizontal" id="field-dep-types" name="field-dep-types" type="text"
       [ngModel]="dependencyId" (ngModelChange)="dependencySelectionChange($event)">
-      <option *ngIf="currentFlatFieldModel.length === 0" selected="true" disabled="disabled">Fields not found (self and parent excluded)</option>
-      <option *ngFor="let field of currentFlatFieldModel; let i = index;" [value]="field.id">{{field.fieldType}} :
+      <option *ngIf="availableDependenciesToPick.length === 0" selected="true" disabled="disabled">Fields not found (self and parent excluded)</option>
+      <option *ngFor="let field of availableDependenciesToPick; let i = index;" [value]="field.id">{{field.fieldType}} :
         {{field.id}}</option>
     </select>
   </td>
