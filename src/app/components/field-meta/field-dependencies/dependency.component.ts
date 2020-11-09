@@ -24,18 +24,19 @@ export class DependencyComponent implements OnInit {
 
   public dependencyId: number;
 
-  public currentFlatFieldModel: ReadonlyArray<BaseField> = new Array<BaseField>();
+  public availableDependenciesToPick: ReadonlyArray<BaseField> = new Array<BaseField>();
   public validationTypes: typeof ValidationType = ValidationType;
 
   constructor(private formModelProviderService: FormModelProviderService) { }
 
   public ngOnInit(): void {
     this.formModelProviderService.listenToModelChanges().subscribe(() => {
-      this.currentFlatFieldModel = this.formModelProviderService
+      this.availableDependenciesToPick = this.formModelProviderService
         .getFlatFieldModel()
-        .filter(field => field.id !== this.dependencyData.getOwnerId() &&
+        .filter(field =>
           field.isConfigured &&
-          !DependencyComponent.isParent(field, this.dependencyData.getOwnerPath()));
+          field.id !== this.dependencyData.getOwnerId() && // exclude self
+          !DependencyComponent.isAncestor(field, this.dependencyData.getOwnerPath())); // exclude ancestors
     });
   }
 
@@ -74,16 +75,9 @@ export class DependencyComponent implements OnInit {
     this.dependencyRemoved.emit(this.dependencyData);
   }
 
-  private static isParent(field: BaseField, ownerPath: number[]): boolean {
-    let isParent = false;
-
-    ownerPath.forEach(pathElement => {
-      if (field.id === pathElement) {
-        isParent = true;
-      }
-    });
-
-    return isParent;
+  private static isAncestor(fieldToCheck: BaseField, ownerPath: number[]): boolean {
+    const isAncestor = fieldToCheck.isMyDescendant(ownerPath);
+    return isAncestor;
   }
 
   private emitNewDependencyModel(): void {
