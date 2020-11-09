@@ -27,9 +27,11 @@ export class FieldUtils {
         return (group: FormGroup): ValidationErrors => {
 
             let error = null;
+            const stopSearchingOnValueFound = true;
 
-            const hasAnyValue = FieldUtils.searchDeepFormGroup(group, false, (control): boolean => {
-                return FieldUtils.controlValueCheck(control);
+            const hasAnyValue = FieldUtils.searchDeepFormGroup(group, stopSearchingOnValueFound, (control): boolean => {
+                const valueCheckResult = FieldUtils.controlValueCheck(control);
+                return valueCheckResult;
             });
 
             if (!hasAnyValue) {
