@@ -5,8 +5,7 @@ import { FieldType } from 'src/app/constants/field-types';
 
 @Component({
   selector: 'app-form-model',
-  templateUrl: './form-model.component.html',
-  styleUrls: ['./form-model.component.scss']
+  templateUrl: './form-model.component.html'
 })
 export class FormModelComponent implements OnInit {
 
