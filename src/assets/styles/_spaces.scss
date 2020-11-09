@@ -1,5 +1,17 @@
 @import "variables";
 
+.pd-sm {
+    padding: $space-mini;
+}
+
+.margin-rm {
+    margin: 0;
+}
+
+.margin-sm-bottom {
+    margin-bottom: $space-mini / 2;
+}
+
 .left-offset--small {
     padding-left: $space-mini;
 }

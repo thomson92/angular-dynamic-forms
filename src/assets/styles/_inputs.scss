@@ -1,8 +1,9 @@
 @import "variables";
+@import "spaces";
 
 .inline-label {
     @extend .text-basic--color, .text--medium;
-    padding: $space-mini;
+    padding-left: $space-mini / 3;
 }
 
 .text--medium {
@@ -11,6 +12,14 @@
 
 .text-basic--color {
     color: $text-color-base;
+}
+
+.checkbox__field {
+    padding: $space-mini / 2;
+}
+
+.text--mg-a {
+    margin: auto;
 }
 
 .base-input {
